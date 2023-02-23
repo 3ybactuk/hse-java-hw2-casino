@@ -22,7 +22,6 @@ public class Player extends Thread {
                 Thread.sleep(RandomUtil.randIntInRange(100, 1000));
             } catch (InterruptedException e) {
                 break;
-//                throw new RuntimeException(e);
             }
         }
 

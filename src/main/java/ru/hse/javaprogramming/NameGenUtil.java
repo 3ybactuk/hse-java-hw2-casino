@@ -5,18 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class NameGenUtil {
-    private Set<String> activePlayerNames = new HashSet<>();
-    private Set<String> activeTeamNames = new HashSet<>();
-    private Queue<String> inactivePlayerNames = generatePlayerNames();
-    private Queue<String> inactiveTeamNames = generateTeamNames();
-
-    public boolean isPlayerNameTaken(String name) {
-        return activePlayerNames.contains(name);
-    }
-
-    public boolean isTeamNameTaken(String name) {
-        return activeTeamNames.contains(name);
-    }
+    private final Set<String> activePlayerNames = new HashSet<>();
+    private final Set<String> activeTeamNames = new HashSet<>();
+    private final Queue<String> inactivePlayerNames = generatePlayerNames();
+    private final Queue<String> inactiveTeamNames = generateTeamNames();
 
     public String getPlayerName() {
         if (inactivePlayerNames.size() == 0) {

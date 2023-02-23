@@ -3,17 +3,14 @@ package ru.hse.javaprogramming;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Locale;
-import java.util.Objects;
+import java.util.*;
 
 public class MainCroupier {
     private static int MAX_TEAMS;
-    private static final int GAME_DURATION = 11;
-    private static ArrayList<Team> activeTeams = new ArrayList<>();
+    private static final int GAME_DURATION = 3;
+    private static ArrayList<Team> activeTeams;
     private static final NameGenUtil nameGenUtil = new NameGenUtil();
-    private static final long START_TIME = System.nanoTime();
+    private static long START_TIME = System.nanoTime();
     private static final DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
     private static final DecimalFormat df = new DecimalFormat("####0.00", symbols);
 
@@ -29,16 +26,34 @@ public class MainCroupier {
             return;
         }
 
-
         if (MAX_TEAMS < 1 || MAX_TEAMS > 10) {
             System.out.println("Error: CLI argument t must be in range [1; 10]");
         }
 
         df.setRoundingMode(RoundingMode.DOWN);
 
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            playRound();
+
+            System.out.println();
+            System.out.println("Another round? (type anything for another round, type \"exit\" to exit.)");
+            System.out.print("> ");
+            if (!scanner.hasNext()) {
+                break;
+            } else if (scanner.nextLine().equals("exit")) {
+                break;
+            }
+        }
+    }
+
+    private static void playRound() {
+        activeTeams = new ArrayList<>();
         for (int i = 0; i < MAX_TEAMS; i++) {
             activeTeams.add(assembleTeam());
         }
+
+        START_TIME = System.nanoTime();
 
         while (timeLeft() > 0) {
 
@@ -57,7 +72,6 @@ public class MainCroupier {
 
             System.out.println("Running time: " + df.format(timeElapsed()) + ". Time left: " + df.format(timeLeft()));
 
-//            isCroupierSpeaking = false;
             activeTeams.forEach(Team::croupierUnlock);
             try {
                 long timeLeft = 0;
@@ -81,7 +95,7 @@ public class MainCroupier {
 
     private static Team assembleTeam() {
         Team team = new Team(Objects.requireNonNull(nameGenUtil.getTeamName()));
-//        team.croupierLock();
+
         for (int i = 0; i < 3; i++) {
             Player player = new Player(Objects.requireNonNull(nameGenUtil.getPlayerName()), team);
             team.addPlayer(player);
@@ -94,9 +108,18 @@ public class MainCroupier {
     private static void disassembleTeams() {
         for (Team team : activeTeams) {
             for (Player player : team.getPlayers()) {
+                nameGenUtil.freePlayerName(player.getPlayerName());
                 player.interrupt();
+
+                try {
+                    player.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
+            nameGenUtil.freeTeamName(team.getTeamName());
         }
+
     }
 
     private static void leaderBoard() {
@@ -142,13 +165,5 @@ public class MainCroupier {
 
     private static double timeLeft() {
         return GAME_DURATION - timeElapsed();
-    }
-
-    private static void listTeam(Team team) {
-        System.out.println(team.getTeamName());
-        for (Player player : team.getPlayers()) {
-            System.out.println(player.getPlayerName());
-        }
-        System.out.println();
     }
 }

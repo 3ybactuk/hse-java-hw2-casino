@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Team implements Comparable<Team> {
     private final String teamName;
-    private Set<Player> players = new HashSet<>();
+    private final Set<Player> players = new HashSet<>();
     private boolean isTableOccupied = false;
     private boolean isCroupierSpeaking = false;
     private int points = 0;
