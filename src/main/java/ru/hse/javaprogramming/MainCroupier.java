@@ -7,7 +7,7 @@ import java.util.*;
 
 public class MainCroupier {
     private static int MAX_TEAMS;
-    private static final int GAME_DURATION = 3;
+    private static final int GAME_DURATION = 35;
     private static ArrayList<Team> activeTeams;
     private static final NameGenUtil nameGenUtil = new NameGenUtil();
     private static long START_TIME = System.nanoTime();
