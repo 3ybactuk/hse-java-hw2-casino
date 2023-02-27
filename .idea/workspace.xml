@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="593f0dce-a6f6-4473-852b-59053a5cbee4" name="Changes" comment="Tidied up the code and added multiple rounds with user input.">
+    <list default="true" id="593f0dce-a6f6-4473-852b-59053a5cbee4" name="Changes" comment="First iteration of work.&#10;Implemented most of the stuff.&#10;Haven't implemented repeating the game.">
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/hse/javaprogramming/MainCroupierTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/hse/javaprogramming/NameGenUtilTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/hse/javaprogramming/PlayerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/hse/javaprogramming/RandomUtilTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/hse/javaprogramming/TeamTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/MainCroupier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/MainCroupier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/NameGenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/NameGenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/RandomUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/RandomUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/Team.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,30 +42,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "run.code.analysis.last.selected.profile": "aNitpicking inspections",
-    "settings.editor.selected.configurable": "Errors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aNitpicking inspections&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MainCroupier">
     <configuration name="MainCroupier" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.hse.javaprogramming.MainCroupier" />
-      <module name="hw2-casino" />
-      <option name="PROGRAM_PARAMETERS" value="3" />
+      <module name="hse-java-hw2-casino" />
+      <option name="PROGRAM_PARAMETERS" value="10" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.hse.javaprogramming.RandomUtil" />
+          <option name="PATTERN" value="ru.hse.javaprogramming.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -63,9 +73,95 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All tests" type="JUnit" factoryName="JUnit">
+      <module name="hse-java-hw2-casino" />
+      <option name="PACKAGE_NAME" value="ru.hse.javaprogramming" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCroupierTest.testDisassembleTeams" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hse-java-hw2-casino" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.hse.javaprogramming.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.hse.javaprogramming" />
+      <option name="MAIN_CLASS_NAME" value="ru.hse.javaprogramming.MainCroupierTest" />
+      <option name="METHOD_NAME" value="testDisassembleTeams" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCroupierTest.testMainWithInvalidArg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hse-java-hw2-casino" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.hse.javaprogramming.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.hse.javaprogramming" />
+      <option name="MAIN_CLASS_NAME" value="ru.hse.javaprogramming.MainCroupierTest" />
+      <option name="METHOD_NAME" value="testMainWithInvalidArg" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCroupierTest.testMainWithInvalidArguments" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hse-java-hw2-casino" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.hse.javaprogramming.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.hse.javaprogramming" />
+      <option name="MAIN_CLASS_NAME" value="ru.hse.javaprogramming.MainCroupierTest" />
+      <option name="METHOD_NAME" value="testMainWithInvalidArguments" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainCroupierTest.testMainWithNoArguments" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hse-java-hw2-casino" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.hse.javaprogramming.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.hse.javaprogramming" />
+      <option name="MAIN_CLASS_NAME" value="ru.hse.javaprogramming.MainCroupierTest" />
+      <option name="METHOD_NAME" value="testMainWithNoArguments" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.MainCroupier" />
+      <item itemvalue="JUnit.All tests" />
+      <item itemvalue="JUnit.MainCroupierTest.testDisassembleTeams" />
+      <item itemvalue="JUnit.MainCroupierTest.testMainWithInvalidArg" />
+      <item itemvalue="JUnit.MainCroupierTest.testMainWithInvalidArguments" />
+      <item itemvalue="JUnit.MainCroupierTest.testMainWithNoArguments" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainCroupier" />
+        <item itemvalue="JUnit.MainCroupierTest.testDisassembleTeams" />
+        <item itemvalue="JUnit.MainCroupierTest.testMainWithInvalidArguments" />
+        <item itemvalue="JUnit.MainCroupierTest.testMainWithNoArguments" />
+        <item itemvalue="JUnit.MainCroupierTest.testMainWithInvalidArg" />
       </list>
     </recent_temporary>
   </component>
@@ -79,6 +175,8 @@
       <updated>1677015489361</updated>
       <workItem from="1677015491116" duration="10187000" />
       <workItem from="1677067044287" duration="25829000" />
+      <workItem from="1677505140709" duration="700000" />
+      <workItem from="1677522847902" duration="4042000" />
     </task>
     <task id="LOCAL-00001" summary="First iteration of work.&#10;Implemented most of the stuff.&#10;Haven't implemented repeating the game.">
       <created>1677163049969</created>
@@ -115,5 +213,8 @@
     <MESSAGE value="First iteration of work.&#10;Implemented most of the stuff.&#10;Haven't implemented repeating the game." />
     <MESSAGE value="Tidied up the code and added multiple rounds with user input." />
     <option name="LAST_COMMIT_MESSAGE" value="Tidied up the code and added multiple rounds with user input." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/hse_java_hw2_casino$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1677537982420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -10,6 +10,9 @@ public class NameGenUtil {
     private final Queue<String> inactivePlayerNames = generatePlayerNames();
     private final Queue<String> inactiveTeamNames = generateTeamNames();
 
+    /**
+     * @return available (unique) player name.
+     */
     public String getPlayerName() {
         if (inactivePlayerNames.size() == 0) {
             System.out.println("Error: No available player names.");
@@ -21,11 +24,17 @@ public class NameGenUtil {
         return name;
     }
 
+    /**
+     * @param name free player name that is no longer in use.
+     */
     public void freePlayerName(String name) {
         activePlayerNames.remove(name);
         inactivePlayerNames.add(name);
     }
 
+    /**
+     * @return available (unique) team name.
+     */
     public String getTeamName() {
         if (inactiveTeamNames.size() == 0) {
             System.out.println("Error: No available team names.");
@@ -37,28 +46,44 @@ public class NameGenUtil {
         return name;
     }
 
+    /**
+     * @param name free team name that is no longer in use.
+     */
     public void freeTeamName(String name) {
         activeTeamNames.remove(name);
         inactiveTeamNames.add(name);
     }
 
+    /**
+     * Reads team names from text file and adds them to a queue
+     * @return queue of unique team names.
+     */
     private Queue<String> generateTeamNames() {
         return getStrings("team_names.txt");
     }
 
+    /**
+     * Reads player names from text file and adds them to a queue
+     * @return queue of unique player names.
+     */
     private Queue<String> generatePlayerNames() {
         return getStrings("player_names.txt");
     }
 
+
+    /**
+     * @param fileName which file to read from.
+     * @return queue of strings of names.
+     */
     private Queue<String> getStrings(String fileName) {
-        Queue<String> playerNames = new LinkedList<>();
+        Queue<String> names = new LinkedList<>();
 
         try {
             Scanner scanner = new Scanner(new File(fileName));
 
             while (scanner.hasNextLine()) {
                 String name = scanner.nextLine();
-                playerNames.add(name);
+                names.add(name);
             }
 
             scanner.close();
@@ -66,6 +91,22 @@ public class NameGenUtil {
             System.out.println("Error: File not found!");
         }
 
-        return playerNames;
+        return names;
+    }
+
+    public Set<String> getActivePlayerNames() {
+        return Collections.unmodifiableSet(activePlayerNames);
+    }
+
+    public Set<String> getActiveTeamNames() {
+        return Collections.unmodifiableSet(activeTeamNames);
+    }
+
+    public Queue<String> getInactivePlayerNames() {
+        return inactivePlayerNames;
+    }
+
+    public Queue<String> getInactiveTeamNames() {
+        return inactiveTeamNames;
     }
 }

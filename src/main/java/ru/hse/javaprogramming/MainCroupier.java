@@ -6,14 +6,17 @@ import java.text.DecimalFormatSymbols;
 import java.util.*;
 
 public class MainCroupier {
-    private static int MAX_TEAMS;
-    private static final int GAME_DURATION = 35;
+    public static int MAX_TEAMS;
+    public static final int GAME_DURATION = 35;
     private static ArrayList<Team> activeTeams;
     private static final NameGenUtil nameGenUtil = new NameGenUtil();
     private static long START_TIME = System.nanoTime();
     private static final DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
     private static final DecimalFormat df = new DecimalFormat("####0.00", symbols);
 
+    /**
+     * @param args contains CLI argument t - number of teams.
+     */
     public static void main(String[] args) {
         try {
             if (args.length == 0) {
@@ -28,6 +31,7 @@ public class MainCroupier {
 
         if (MAX_TEAMS < 1 || MAX_TEAMS > 10) {
             System.out.println("Error: CLI argument t must be in range [1; 10]");
+            return;
         }
 
         df.setRoundingMode(RoundingMode.DOWN);
@@ -47,21 +51,18 @@ public class MainCroupier {
         }
     }
 
-    private static void playRound() {
-        activeTeams = new ArrayList<>();
-        for (int i = 0; i < MAX_TEAMS; i++) {
-            activeTeams.add(assembleTeam());
-        }
+    /**
+     * Plays the game of casino.
+     * Assembles the teams, plays the round, prints out the leaderboard, disassembles the teams.
+     */
+    public static void playRound() {
+        assembleAllTeams();
 
         START_TIME = System.nanoTime();
 
         while (timeLeft() > 0) {
 
             activeTeams.forEach(Team::croupierLock);
-            for (Team team : activeTeams) {
-                while (team.isTableOccupied()) {}
-
-            }
 
             Collections.sort(activeTeams);
 
@@ -85,15 +86,24 @@ public class MainCroupier {
         }
 
         activeTeams.forEach(Team::croupierLock);
-        for (Team team : activeTeams) {
-            while (team.isTableOccupied()) {}
-
-        }
         leaderBoard();
         disassembleTeams();
     }
 
-    private static Team assembleTeam() {
+    /**
+     * Fills activeTeams with new MAX_TEAMS (t CLI arg) teams
+     */
+    public static void assembleAllTeams() {
+        activeTeams = new ArrayList<>();
+        for (int i = 0; i < MAX_TEAMS; i++) {
+            activeTeams.add(assembleTeam());
+        }
+    }
+
+    /**
+     * @return Team object - assembled team, with unique name, and unique player names.
+     */
+    public static Team assembleTeam() {
         Team team = new Team(Objects.requireNonNull(nameGenUtil.getTeamName()));
 
         for (int i = 0; i < 3; i++) {
@@ -105,7 +115,10 @@ public class MainCroupier {
         return team;
     }
 
-    private static void disassembleTeams() {
+    /**
+     * Disassembles the teams, stops players (threads), frees the names of a team and player names.
+     */
+    public static void disassembleTeams() {
         for (Team team : activeTeams) {
             for (Player player : team.getPlayers()) {
                 nameGenUtil.freePlayerName(player.getPlayerName());
@@ -122,10 +135,12 @@ public class MainCroupier {
 
     }
 
-    private static void leaderBoard() {
+    /**
+     * Prints out the running time, leaderboard with prizes.
+     */
+    public static void leaderBoard() {
         System.out.println();
         System.out.println("Running time: " + df.format(timeElapsed()) + ". Time left: " + df.format(timeLeft()));
-        System.out.println("\t\tLEADERBOARD");
 
         Collections.sort(activeTeams);
 
@@ -140,30 +155,44 @@ public class MainCroupier {
         System.out.println("Total prize: ¥" + prize + "\t| Winners: " + winnerCNT);
         prize /= winnerCNT;
 
+        System.out.println("────────────────────────────────────────────────────────────────");
+        System.out.printf("%40s", "L E A D E R B O A R D\n");
+
         int pos = 1;
         for (Team team : activeTeams) {
             if (team.getPoints() <= 0 || winnerCNT <= 0) {
                 prize = 0;
             }
-            System.out.println();
-            System.out.println(pos + ". " + team.getTeamName() + "\t\t\t| " + team.getPoints() + "\t| ¥" + df.format(prize));
+
+            System.out.println("────────────────────────────────────────────────────────────────");
+            System.out.printf("%2d. %-35s │ %-8d │ ¥%s\n", pos, team.getTeamName(), team.getPoints(), df.format(prize));
+            System.out.println("────────────────────────────────────────────────────────────────");
+
             if (prize > 0) {
                 for (Player player : team.getPlayers()) {
                     double share = (double) player.getPoints() / team.getPoints();
-                    System.out.println("\t| " + player.getPlayerName() + "\t\t\t| " + player.getPoints() + "\t\t| ¥" + df.format(prize * share));
+                    System.out.printf("\t│ %-33s │ %-8d │ ¥%s\n", player.getPlayerName(), player.getPoints(), df.format(prize * share));
                 }
             }
             winnerCNT--;
             pos++;
+            System.out.println();
         }
     }
 
-    private static double timeElapsed() {
+    /**
+     * @return running time from the start of the round in seconds.
+     */
+    public static double timeElapsed() {
         long elapsedTime = System.nanoTime() - START_TIME;
         return (double) elapsedTime / 1_000_000_000;
     }
 
-    private static double timeLeft() {
+    /**
+     * GAME_DURATION - default 35 seconds.
+     * @return time left of the round.
+     */
+    public static double timeLeft() {
         return GAME_DURATION - timeElapsed();
     }
 }
