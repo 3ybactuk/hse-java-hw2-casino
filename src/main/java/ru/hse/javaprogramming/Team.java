@@ -21,7 +21,6 @@ public class Team implements Comparable<Team> {
     /**
      * If the table is not occupied, rolls the dice.
      * @return points
-     * @throws InterruptedException
      */
     public synchronized int playDice() throws InterruptedException {
         if (isCroupierSpeaking) {
@@ -33,9 +32,6 @@ public class Team implements Comparable<Team> {
         }
 
         occupyTable();
-//        System.out.println("Player from " + teamName + " is rolling dice.");
-
-//        wait(11_000);
 
         int tempPoints = 0;
 
@@ -47,7 +43,6 @@ public class Team implements Comparable<Team> {
             wait();
         }
 
-//        System.out.println("Player from " + teamName + " finished rolling dice. " + tempPoints);
         deoccupyTable();
         return tempPoints;
     }

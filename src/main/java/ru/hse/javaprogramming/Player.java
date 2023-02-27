@@ -2,7 +2,6 @@ package ru.hse.javaprogramming;
 
 public class Player extends Thread {
     private final String name;
-    private boolean isActive;
     private final Team team;
     private int points = 0;
 
