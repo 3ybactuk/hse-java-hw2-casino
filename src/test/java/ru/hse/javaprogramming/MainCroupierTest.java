@@ -49,6 +49,37 @@ public class MainCroupierTest {
     }
 
     @Test
+    public void testCountWinnersZero() {
+        MainCroupier.MAX_TEAMS = 3;
+        MainCroupier.assembleAllTeams();
+        for (Team team : MainCroupier.getActiveTeams()) {
+            team.setPoints(0);
+        }
+        assertEquals(0, MainCroupier.countWinners());
+    }
+
+    @Test
+    public void testCountWinnersAll() {
+        MainCroupier.MAX_TEAMS = 3;
+        MainCroupier.assembleAllTeams();
+        for (Team team : MainCroupier.getActiveTeams()) {
+            team.setPoints(100);
+        }
+        assertEquals(3, MainCroupier.countWinners());
+    }
+
+    @Test
+    public void testCountWinnersOne() {
+        MainCroupier.MAX_TEAMS = 3;
+        MainCroupier.assembleAllTeams();
+        for (Team team : MainCroupier.getActiveTeams()) {
+            team.setPoints(0);
+        }
+        MainCroupier.getActiveTeams().get(0).setPoints(100);
+        assertEquals(1, MainCroupier.countWinners());
+    }
+
+    @Test
     public void testLeaderBoard() {
         MainCroupier.MAX_TEAMS = 3;
         MainCroupier.assembleAllTeams();

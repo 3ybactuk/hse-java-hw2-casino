@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="593f0dce-a6f6-4473-852b-59053a5cbee4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/MainCroupier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/javaprogramming/MainCroupier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/hse/javaprogramming/MainCroupierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/hse/javaprogramming/MainCroupierTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +49,7 @@
       <recent name="$PROJECT_DIR$/" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainCroupier">
+  <component name="RunManager" selected="JUnit.All tests">
     <configuration name="MainCroupier" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.hse.javaprogramming.MainCroupier" />
       <module name="hse-java-hw2-casino" />
@@ -166,7 +167,8 @@
       <workItem from="1677015491116" duration="10187000" />
       <workItem from="1677067044287" duration="25829000" />
       <workItem from="1677505140709" duration="700000" />
-      <workItem from="1677522847902" duration="4490000" />
+      <workItem from="1677522847902" duration="4804000" />
+      <workItem from="1677580827569" duration="4941000" />
     </task>
     <task id="LOCAL-00001" summary="First iteration of work.&#10;Implemented most of the stuff.&#10;Haven't implemented repeating the game.">
       <created>1677163049969</created>
@@ -189,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677538815676</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added tests, javadocs, made the output fabulous. Fixed warnings">
+      <created>1677538966997</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677538966997</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,9 +219,10 @@
     <MESSAGE value="First iteration of work.&#10;Implemented most of the stuff.&#10;Haven't implemented repeating the game." />
     <MESSAGE value="Tidied up the code and added multiple rounds with user input." />
     <MESSAGE value="Added tests, javadocs, made the output fabulous." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tests, javadocs, made the output fabulous." />
+    <MESSAGE value="Added tests, javadocs, made the output fabulous. Fixed warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tests, javadocs, made the output fabulous. Fixed warnings" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/hse_java_hw2_casino$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1677537982420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/hse_java_hw2_casino$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1677589561176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

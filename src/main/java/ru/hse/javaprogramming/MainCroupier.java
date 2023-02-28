@@ -136,6 +136,14 @@ public class MainCroupier {
     }
 
     /**
+     * Getter for activeTeams.
+     * @return activeTeams
+     */
+    public static ArrayList<Team> getActiveTeams() {
+        return activeTeams;
+    }
+
+    /**
      * Prints out the running time, leaderboard with prizes.
      */
     public static void leaderBoard() {
@@ -145,13 +153,9 @@ public class MainCroupier {
         Collections.sort(activeTeams);
 
         double prize = RandomUtil.randIntInRange(1_000_000, 10_000_000);
-        int maxPTS = activeTeams.get(0).getPoints();
-        int winnerCNT = 0;
-        for (Team team : activeTeams) {
-            if (team.getPoints() == maxPTS) {
-                winnerCNT++;
-            }
-        }
+
+        int winnerCNT = countWinners();
+
         System.out.println("Total prize: ¥" + prize + "\t| Winners: " + winnerCNT);
         prize /= winnerCNT;
 
@@ -160,7 +164,7 @@ public class MainCroupier {
 
         int pos = 1;
         for (Team team : activeTeams) {
-            if (team.getPoints() <= 0 || winnerCNT <= 0) {
+            if (winnerCNT <= 0) {
                 prize = 0;
             }
 
@@ -178,6 +182,29 @@ public class MainCroupier {
             pos++;
             System.out.println();
         }
+    }
+
+    /**
+     * Counts winners in a round, if there are any (points > 0).
+     * @return total winners
+     */
+    public static int countWinners() {
+        int maxPTS = 0;
+        for (Team team : activeTeams) {
+            maxPTS = Integer.max(maxPTS, team.getPoints());
+        }
+
+        if (maxPTS == 0) {
+            return 0;
+        }
+
+        int winnerCNT = 0;
+        for (Team team : activeTeams) {
+            if (team.getPoints() == maxPTS) {
+                winnerCNT++;
+            }
+        }
+        return winnerCNT;
     }
 
     /**
